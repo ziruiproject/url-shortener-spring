@@ -1,0 +1,21 @@
+services:
+  rabbitmq:
+    image: 'rabbitmq:latest'
+    environment:
+      - 'RABBITMQ_DEFAULT_PASS=rabbitmq'
+      - 'RABBITMQ_DEFAULT_USER=rahasia123'
+    ports:
+      - '5672'
+  db:
+    image: 'postgres:alpine'
+    restart: always
+    environment:
+      POSTGRES_DB: url_shortener
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: rahasia123
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+volumes:
+  postgres_data:
